@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'testApp',
     'bootstrapform',
+    'user',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -52,7 +53,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'mathMOOC.urls'
 
 TEMPLATES = [
