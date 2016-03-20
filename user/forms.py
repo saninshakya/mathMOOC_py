@@ -7,10 +7,10 @@ class LoginForm(forms.Form):
 
 
 class SignupForm(forms.Form):
-	email =  forms.EmailField(required=True, widget=forms.TextInput(attrs={'placeholder':'Email'}))
-	username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder':'Username'}))
-	password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-	confirm = forms.CharField(required=True,  widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
+	email =  forms.EmailField(required=True, widget=forms.TextInput(attrs={'placeholder':'Email'}), label ='')
+	username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder':'Username'}), label ='')
+	password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), label ='')
+	confirm = forms.CharField(required=True,  widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}), label ='')
     
 	def clean_confirm(self):
 		password = self.cleaned_data.get('password')
@@ -24,3 +24,5 @@ class SignupForm(forms.Form):
 	    if User.objects.filter(username=username).exists():
 	        raise forms.ValidationError('Username already exists.')
 	    return username
+
+	
