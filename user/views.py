@@ -3,10 +3,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.contrib import messages
 import sys
-# from django.contrib.sessions.models import Session
 from django.contrib.auth import authenticate, login
 from django.contrib import auth
 from django.contrib.auth.models import User
+from user.models import StudentParent
 import datetime
 from django.shortcuts import redirect
 from user.forms import LoginForm, SignupForm
@@ -33,8 +33,9 @@ def signup(request):
 
 				result = User.objects.create_user(password=s_password, username=s_username, first_name=s_first_name, last_name=s_last_name, email = 'testuser@gmail.com')
 				rslt = User.objects.create_user(password=p_password, username=p_username, first_name=p_first_name, last_name=p_last_name, email =p_email)
-
+				
 				if rslt:
+					stud_parent =  StudentParent.objects.create(parent_id=rslt.id, student_id=result.id)
 					messages.add_message(request, messages.INFO, "Welcome, You are Registered Successfully.")
 					return HttpResponseRedirect('/test/')	
 				else:
