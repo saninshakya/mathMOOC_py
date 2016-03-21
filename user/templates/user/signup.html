@@ -21,7 +21,7 @@
 <div id="signupbox" style="margin-top:50px" >
             <form class="form-horizontal" action="/user/signup/" method="post">
                 {% csrf_token %}
-                <!-- Projects Row -->
+                <!-- Parent Row -->
                 <div class="row">
                     <div class="col-md-6 portfolio-item">
                         <h3>
@@ -30,39 +30,37 @@
                         <p>                    
                         <div class="panel-body" >
                             <div class="field">
-                                {{ form.email|bootstrap }}
+                                {{ form.p_first_name|bootstrap }}
                             </div>
                             <div class="field">
-                                {{ form.username|bootstrap }}
+                                {{ form.p_last_name|bootstrap }}
                             </div>
                             <div class="field">
-                                {{ form.password|bootstrap }}
+                                {{ form.p_email|bootstrap }}
                             </div>
                             <div class="field">
-                                {{ form.confirm|bootstrap }}
+                                {{ form.p_username|bootstrap }}
                             </div>
                         </div>
                         </p>
                     </div>
+                    <!-- Student Row -->
                     <div class="col-md-6 portfolio-item">
                         <h3>
                             <a href="#">Student Details</a>
                         </h3>
-                        <p>                    
+                        <p>
                         <div class="panel-body" >
                             <div class="field">
-                                {{ form.email|bootstrap }}
+                                {{ form.first_name|bootstrap }}
+                            </div>
+                            <div class="field">
+                                {{ form.last_name|bootstrap }}
                             </div>
                             <div class="field">
                                 {{ form.username|bootstrap }}
                             </div>
-                            <div class="field">
-                                {{ form.password|bootstrap }}
-                            </div>
-                            <div class="field">
-                                {{ form.confirm|bootstrap }}
-                            </div>
-                        </div>
+                        </div>                    
                         </p>
                     </div>
                 </div>

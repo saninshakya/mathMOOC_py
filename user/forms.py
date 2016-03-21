@@ -7,10 +7,17 @@ class LoginForm(forms.Form):
 
 
 class SignupForm(forms.Form):
-	email =  forms.EmailField(required=True, widget=forms.TextInput(attrs={'placeholder':'Email'}), label ='')
-	username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder':'Username'}), label ='')
-	password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), label ='')
-	confirm = forms.CharField(required=True,  widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}), label ='')
+	p_first_name =  forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder':'Parent First Name'}), label ='')
+	p_last_name =  forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder':'Parent Last Name'}), label ='')
+	p_username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder':'Parent Username'}), label ='')
+	p_email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'placeholder':'Email'}), label ='')
+	
+	first_name =  forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder':'Student First Name'}), label ='')
+	last_name =  forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder':'Student Last Name'}), label ='')
+	username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder':'Student Username'}), label ='')
+	
+	# password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), label ='')
+	# confirm = forms.CharField(required=True,  widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}), label ='')
     
 	def clean_confirm(self):
 		password = self.cleaned_data.get('password')

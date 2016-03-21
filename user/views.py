@@ -17,22 +17,24 @@ def signup(request):
 		form = SignupForm()
 		if request.method == 'POST':
 			form = SignupForm(request.POST)
+
 			if form.is_valid():
 				cd = form.cleaned_data
-				email = cd['email']
-				username = cd['username']
-				password = cd['password']
-				confirm = cd['confirm']
-				result = User.objects.create_user(password=password, username=username, first_name="", last_name="", email=email)
-				#Auto Login if succesfully signup
-				if result:
-					user = authenticate(username=username, password=password)
-					if user is not None:
-						if user.is_active:	
-							# update last login in database
-							result = User.objects.filter(username=username).update(last_login=datetime.datetime.now())
-							login(request, user)
+				s_first_name = cd['first_name']
+				s_last_name = cd['last_name']
+				s_username = cd['username']
+				s_password = 'pass'
 
+				p_first_name = cd['p_first_name']
+				p_last_name = cd['p_last_name']
+				p_username = cd['p_username']
+				p_email = cd['p_email']
+				p_password = 'pass'
+
+				result = User.objects.create_user(password=s_password, username=s_username, first_name=s_first_name, last_name=s_last_name, email = 'testuser@gmail.com')
+				rslt = User.objects.create_user(password=p_password, username=p_username, first_name=p_first_name, last_name=p_last_name, email =p_email)
+
+				if rslt:
 					messages.add_message(request, messages.INFO, "Welcome, You are Registered Successfully.")
 					return HttpResponseRedirect('/test/')	
 				else:
@@ -45,7 +47,8 @@ def signup(request):
 			return render(request, 'user/signup.html', {'form':form})
 	except:
 		messages.add_message(request, messages.ERROR, sys.exc_info()[1])
-	return render(request, 'user/signup.html', {'form':form})
+	return render(request, 'user/signup.html', {'form':form})			
+				
 
 def login_account(request):
 	try:
