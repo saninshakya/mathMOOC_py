@@ -27,9 +27,13 @@ class SignupForm(forms.Form):
 		return confirm
 
 	def clean_username(self):
-	    username = self.cleaned_data['username']
-	    if User.objects.filter(username=username).exists():
-	        raise forms.ValidationError('Username already exists.')
-	    return username
-
-	
+		username = self.cleaned_data['username']
+		if User.objects.filter(username=username).exists():
+			raise forms.ValidationError('Username already exists.')
+		return username
+	#clean_p_username -> p_username must return as always
+	def clean_p_username(self):
+		p_username = self.cleaned_data['p_username']
+		if User.objects.filter(username=p_username).exists():
+			raise forms.ValidationError('Username already exists.')
+		return p_username
